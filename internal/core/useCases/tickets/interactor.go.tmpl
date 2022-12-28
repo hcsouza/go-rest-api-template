@@ -1,0 +1,23 @@
+{{ define "generator" }}
+package tickets
+
+import (
+	"context"
+
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/domain"
+)
+
+type ticketUseCase struct {
+	repository domain.TicketRepository
+}
+
+func NewActionUseCase(repository domain.TicketRepository) domain.TicketUseCase {
+	return &ticketUseCase{
+		repository: repository,
+	}
+}
+
+func (interactor *ticketUseCase) FindAll(logContext context.Context) ([]domain.Ticket, error) {
+	return interactor.repository.FindAll(context.Background())
+}
+{{end}}

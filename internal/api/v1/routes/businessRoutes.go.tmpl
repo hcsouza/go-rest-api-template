@@ -1,0 +1,27 @@
+{{ define "generator" }}
+package routes
+
+import (
+	"github.com/gin-gonic/gin"
+
+  "{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/api/v1/handlers"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/domain"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/repository/inMemory"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/useCases/tickets"
+)
+
+func RegisterBusinessRoutes(gServer *gin.RouterGroup) {
+	groupServer := gServer.Group("/v1")
+	registerTicketHandler(groupServer)
+}
+
+func registerTicketHandler(groupServer *gin.RouterGroup) {
+	ticketInteractor := getTicketUseCase()
+	handlers.NewTicketHandler(groupServer, ticketInteractor)
+}
+
+func getTicketUseCase() domain.TicketUseCase {
+	repo := inMemory.NewTicketRepository()
+	return tickets.NewActionUseCase(repo)
+}
+{{end}}
