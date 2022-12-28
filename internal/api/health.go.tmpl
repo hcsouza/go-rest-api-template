@@ -1,3 +1,4 @@
+{{ define "generator" }}
 package api
 
 import (
@@ -18,3 +19,4 @@ func getLivenessHandler(c *gin.Context) {
 func getReadinessHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, struct{ Status string }{Status: "OK"})
 }
+{{end}}

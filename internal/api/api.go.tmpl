@@ -1,8 +1,9 @@
+{{ define "generator" }}
 package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/hcsouza/go-rest-api-template/internal/api/v1/routes"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/api/v1/routes"
 )
 
 func Run(gServer *gin.Engine) {
@@ -18,3 +19,4 @@ func Run(gServer *gin.Engine) {
 
 	gServer.Run()
 }
+{{end}}

@@ -1,9 +1,10 @@
+{{ define "generator" }}
 package inMemory
 
 import (
 	"context"
 
-	"github.com/hcsouza/go-rest-api-template/internal/core/domain"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/domain"
 )
 
 type TicketRepository struct {
@@ -11,11 +12,12 @@ type TicketRepository struct {
 }
 
 func NewTicketRepository() *TicketRepository {
-	return &TicketRepository{
-		tickets: []domain.Ticket{{Id: "123"}, {Id: "456"}},
+  return &TicketRepository{
+		tickets: []domain.Ticket{domain.Ticket{Id: "123"}},
 	}
 }
 
 func (repo TicketRepository) FindAll(logCtx context.Context) ([]domain.Ticket, error) {
 	return repo.tickets, nil
 }
+{{end}}

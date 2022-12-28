@@ -1,13 +1,14 @@
+{{ define "generator" }}
 package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/hcsouza/go-rest-api-template/internal/api"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/api"
 )
 
 func main() {
-
 	gServer := gin.New()
 	api.Run(gServer)
-
 }
+
+{{end}}

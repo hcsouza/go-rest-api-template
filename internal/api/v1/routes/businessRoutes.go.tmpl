@@ -1,12 +1,13 @@
+{{ define "generator" }}
 package routes
 
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/hcsouza/go-rest-api-template/internal/api/v1/handlers"
-	"github.com/hcsouza/go-rest-api-template/internal/core/domain"
-	"github.com/hcsouza/go-rest-api-template/internal/core/repository/inMemory"
-	"github.com/hcsouza/go-rest-api-template/internal/core/useCases/tickets"
+  "{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/api/v1/handlers"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/domain"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/repository/inMemory"
+	"{{.PROJECT_PATH}}/{{.PROJECT_NAME}}/internal/core/useCases/tickets"
 )
 
 func RegisterBusinessRoutes(gServer *gin.RouterGroup) {
@@ -23,3 +24,4 @@ func getTicketUseCase() domain.TicketUseCase {
 	repo := inMemory.NewTicketRepository()
 	return tickets.NewActionUseCase(repo)
 }
+{{end}}
